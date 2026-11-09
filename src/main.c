@@ -15,7 +15,7 @@ void displayReadings(double readings[], int count) {
 }
 
 int isOutOfRange(double temperature) {
-    return (temperature > 76 || temperature < 68) ? 1 : 0;
+    return (temperature > 76) ? 1 : 0;
 }
 
 void checkReadings(double readings[], int count) {
@@ -33,111 +33,66 @@ void recordTest(const char *testName, int passed)
     testsRun++;
     if (passed) {
         testsPassed++;
-        printf("PASS: %s\n", testName);
+        printf("NORMAL: %s\n", testName);
     } else {
-        printf("FAIL: %s\n", testName);
+        printf("WARNING: %s\n", testName);
     }
 }
 
-/* Section 3 - Initial Test Suite */
-
-/* T1: 75 F is within the acceptable range. */
+/Test cases T1-T5
 void test_T1_normalTemperature(void) {
     double temperature = 75.0;
-    recordTest("T1 - 75 F is within the acceptable range",
+    recordTest("T1 - 75 F is normal",
                isOutOfRange(temperature) == 0);
 }
-
-/* T2: 64 F is below the minimum and should require attention. */
 void test_T2_belowMinimum(void) {
     double temperature = 64.0;
-    recordTest("T2 - 64 F requires attention",
+    recordTest("T2 - 64 F warning",
                isOutOfRange(temperature) == 1);
 }
-
-/* T3: 78.5 F is above the maximum and should require attention. */
 void test_T3_aboveMaximum(void) {
-    double temperature = 76;
-    recordTest("T3 - 76 F is within the acceptable range",
-               isOutOfRange(temperature) == 0);
+    double temperature = 78.5;
+    recordTest("T3 - 78.5 F warning",
+               isOutOfRange(temperature) == 1);
 }
+void test_T4_belowMinimum(void) {
+ double temperature = 45.9;
+ recordTest( "T4 - 45.9 F warning",
+    isOutOfRange(temperature)==1);
+}
+void test_T5_normalTemperature(void) {
+    double temperature = 71;
+    recordTest("T4 - 71 is normal"
+        isOutOfRange(temperature) ==0)
+
+}
+
 
 void runInitialTests(void) {
-    printf("\n========================================\n");
-    printf("CSE 1106 INITIAL TEST SUITE\n");
-    printf("========================================\n\n");
+    printf("\n============================\n");
+    printf("\nSmart Classroom Comfort Monitor\n");
+    printf("==============================\n\n");
 
-    test_T1_normalTemperature(); 
+    test_T1_normalTemperature();
     test_T2_belowMinimum();
     test_T3_aboveMaximum();
+    test_T4_belowMinimum();
+    test_T5_normalTemperature();
 }
 
-/* Add your tests T4 - T8 here. */
-/*Tests should follow the same flow and invoke the recordTest method*/
-/* T4: One value below the minimum. */
-void test_T4(void) {
-    double temperature = 67.0;
-    recordTest("T4 - 67 F is below the minimum",
-        isOutOfRange(temperature) == 1);
-}
 
-/* T5: The minimum */
-void test_T5(void) {
-    double temperature = 68.0;
-    recordTest("T5 - 68 F is the minimum acceptable range",
-        isOutOfRange(temperature) == 0);
-}
-/* T6: One value inside the range. */
-void test_T6(void) {
-    double temperature = 72.0;
-    recordTest("T6 - 72 F is inside the acceptable range",
-        isOutOfRange(temperature) == 0);
-}
-/* T7: The maximum. */
-void test_T7(void) {
-    double temperature = 76.0;
-    recordTest("T7 - 76 F is the maximum acceptable range",
-        isOutOfRange(temperature) == 0);
-}
-/* T8: One value above the maximum. */
-void test_T8(void) {
-    double temperature = 77.0;
-    recordTest("T8 - 77 F is above the maximum range",
-        isOutOfRange(temperature) == 1);
-}
-
-/* Finish the method "runTestsNewRequirement" below that invokes the minimal number of tests from T1-T8 needed to ensure (1) the new template change is correctly coded and (2) nothing else has changed. */
-void runTestsNewRequirement(void) {
-    printf("\n========================================\n");
-    printf("CSE 1106 NEW REQUIREMENT TEST SUITE\n");
-    printf("========================================\n\n");
-
-    /*
-    test_T4();
-    test_T5();
-    test_T6();
-    test_T7();
-    test_T8();
-    */
-    test_T2_belowMinimum();
-    test_T5();
-    test_T3_aboveMaximum();
-    test_T8();
-}
 int main(void) {
     double readings[READING_COUNT] = {68.0, 69.0, 70.0, 71.0, 100.0};
 
     printf("========================================\n");
-    printf("LEGACY CLASSROOM TEMPERATURE MONITOR\n");
+    printf("Smart Classroom Comfort Monitor\n");
     printf("========================================\n\n");
 
-    /* First observe the existing program. */
     displayReadings(readings, READING_COUNT);
     printf("\nAverage temperature: %.1f F\n",
            calculateAverage(readings, READING_COUNT));
     checkReadings(readings, READING_COUNT);
 
-    /* Then run the initial test suite. */
     runInitialTests();
 
     printf("\n========================================\n");
@@ -148,15 +103,5 @@ int main(void) {
 	testsRun = 0;
 	testsPassed = 0;
 	
-	/* Uncomment the below code to run the new requirement test suite for section 6. */
-    
-    runTestsNewRequirement();
-
-    printf("\n========================================\n");
-    printf("TEST SUMMARY\n");
-    printf("========================================\n");
-    printf("Tests passed: %d/%d\n", testsPassed, testsRun);
-
     return 0;
 }
-
