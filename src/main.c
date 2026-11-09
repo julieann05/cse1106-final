@@ -40,15 +40,14 @@ void recordTest(const char *testName, int passed)
 }
 
 int main(void) {
+   double readings[READING_COUNT];
+   for(int i=0; i < READING_COUNT; i++){
+   printf("Enter temperature %d: ", i);
+    scanf("%d", &readings[i]);
 
-    printf("========================================\n");
+    printf("========================================\n\n");
     printf("Smart Classroom Comfort Monitor\n");
     printf("========================================\n\n");
-
-    double readings[READING_COUNT];
-   for(int i = 0, i < READING_COUNT, i++)
-   printf("Enter temperature %d: ", i);
-scanf(%d, &readings[i]);
 
 
     
@@ -57,7 +56,7 @@ scanf(%d, &readings[i]);
            calculateAverage(readings, READING_COUNT));
     checkReadings(readings, READING_COUNT);
 
-    runInitialTests();
+runInitialTests();
 
     printf("\n========================================\n");
     printf("TEST SUMMARY\n");
@@ -142,13 +141,12 @@ int main(void) {
     
 
     //Temperature Readings and Statuses to a file
-
-save temperature(float, temp){
-    File*file = fopenn("temperature_log.txt", "a");
+temperature(temp){
+    File*file = fopen("temperature_log.txt", "a");
     if(file == NULL){
         printf("Values not found");
     }
-fprint(file, %2f\n", temp);
+fprint("file, %2f", temp);
     fclose(file);
+  }
 }
-
