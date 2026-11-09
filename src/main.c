@@ -66,6 +66,7 @@ scanf(%d, &readings[i]);
     printf("TEST SUMMARY\n");
     printf("========================================\n");
     printf("Tests passed: %d/%d\n", testsPassed, testsRun);
+    
 	
 	testsRun = 0;
 	testsPassed = 0;
@@ -163,3 +164,6 @@ fclose(ftpr);
 
 return 0;
 }
+
+
+
