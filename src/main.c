@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#define READING_COUNT 5
+
+
+#define READING_COUNT 10
 
 double calculateAverage(double readings[], int count) {
     double total = 0;
@@ -40,14 +42,15 @@ void recordTest(const char *testName, int passed)
 }
 
 int main(void) {
-   double readings[READING_COUNT];
-   for(int i=0; i < READING_COUNT; i++){
-   printf("Enter temperature %d: ", i);
-    scanf("%d", &readings[i]);
 
-    printf("========================================\n\n");
+    printf("========================================\n");
     printf("Smart Classroom Comfort Monitor\n");
     printf("========================================\n\n");
+
+    double readings[READING_COUNT];
+   for(int i = 0, i < READING_COUNT, i++)
+   printf("Enter temperature %d: ", i);
+scanf(%d, &readings[i]);
 
 
     
@@ -56,7 +59,8 @@ int main(void) {
            calculateAverage(readings, READING_COUNT));
     checkReadings(readings, READING_COUNT);
 
-runInitialTests();
+
+
 
     printf("\n========================================\n");
     printf("TEST SUMMARY\n");
@@ -73,23 +77,23 @@ runInitialTests();
 /*/
 Test cases T1-T5
 void test_T1_normalTemperature(void) {
-    double temperature = 75;
+    double temperature = 75.0;
     recordTest("T1 - 75 F is normal",
                isOutOfRange(temperature) == 0);
 }
 void test_T2_belowMinimum(void) {
-    double temperature = 64;
+    double temperature = 64.0;
     recordTest("T2 - 64 F warning",
                isOutOfRange(temperature) == 1);
 }
 void test_T3_aboveMaximum(void) {
-    double temperature = 78;
-    recordTest("T3 - 78 F warning",
+    double temperature = 78.5;
+    recordTest("T3 - 78.5 F warning",
                isOutOfRange(temperature) == 1);
 }
 void test_T4_belowMinimum(void) {
- double temperature = 45;
- recordTest( "T4 - 45 F warning",
+ double temperature = 45.9;
+ recordTest( "T4 - 45.9 F warning",
     isOutOfRange(temperature)==1);
 }
 void test_T5_normalTemperature(void) {
@@ -141,12 +145,21 @@ int main(void) {
     
 
     //Temperature Readings and Statuses to a file
-temperature(temp){
-    File*file = fopen("temperature_log.txt", "a");
-    if(file == NULL){
-        printf("Values not found");
+
+save temperature(float, temp){
+float temperature[READING_COUNT]= {}
+int statuses[READING_COUNT]= {}
+FILE *ftpr;
+ftpr fopen("temperature_log.txt", "w");
+    if(ftpr == NULL){
+        printf("File not found."
+        
+        return 1;
     }
-fprint("file, %2f", temp);
-    fclose(file);
-  }
+for (int = j; j < READING_COUNT; j++)
+printf(ftpr,  "%d\t%.1\t\t%d\n", j, temperature[j]);
+
+fclose(ftpr);
+
+return 0;
 }
