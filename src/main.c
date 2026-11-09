@@ -73,23 +73,23 @@ runInitialTests();
 /*/
 Test cases T1-T5
 void test_T1_normalTemperature(void) {
-    double temperature = 75.0;
+    double temperature = 75;
     recordTest("T1 - 75 F is normal",
                isOutOfRange(temperature) == 0);
 }
 void test_T2_belowMinimum(void) {
-    double temperature = 64.0;
+    double temperature = 64;
     recordTest("T2 - 64 F warning",
                isOutOfRange(temperature) == 1);
 }
 void test_T3_aboveMaximum(void) {
-    double temperature = 78.5;
-    recordTest("T3 - 78.5 F warning",
+    double temperature = 78;
+    recordTest("T3 - 78 F warning",
                isOutOfRange(temperature) == 1);
 }
 void test_T4_belowMinimum(void) {
- double temperature = 45.9;
- recordTest( "T4 - 45.9 F warning",
+ double temperature = 45;
+ recordTest( "T4 - 45 F warning",
     isOutOfRange(temperature)==1);
 }
 void test_T5_normalTemperature(void) {
