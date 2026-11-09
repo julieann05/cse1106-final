@@ -39,7 +39,40 @@ void recordTest(const char *testName, int passed)
     }
 }
 
-/Test cases T1-T5
+int main(void) {
+
+    printf("========================================\n");
+    printf("Smart Classroom Comfort Monitor\n");
+    printf("========================================\n\n");
+
+    double readings[READING_COUNT];
+   for(int i = 0, i < READING_COUNT, i++)
+   printf("Enter temperature %d: ", i);
+scanf(%d, &readings[i]);
+
+
+    
+    displayReadings(readings, READING_COUNT);
+    printf("\nAverage temperature: %.1f F\n",
+           calculateAverage(readings, READING_COUNT));
+    checkReadings(readings, READING_COUNT);
+
+    runInitialTests();
+
+    printf("\n========================================\n");
+    printf("TEST SUMMARY\n");
+    printf("========================================\n");
+    printf("Tests passed: %d/%d\n", testsPassed, testsRun);
+	
+	testsRun = 0;
+	testsPassed = 0;
+	
+    return 0;
+}
+
+
+/*/
+Test cases T1-T5
 void test_T1_normalTemperature(void) {
     double temperature = 75.0;
     recordTest("T1 - 75 F is normal",
@@ -105,3 +138,17 @@ int main(void) {
 	
     return 0;
 }
+    */
+    
+
+    //Temperature Readings and Statuses to a file
+
+save temperature(float, temp){
+    File*file = fopenn("temperature_log.txt", "a");
+    if(file == NULL){
+        printf("Values not found");
+    }
+fprint(file, %2f\n", temp);
+    fclose(file);
+}
+
